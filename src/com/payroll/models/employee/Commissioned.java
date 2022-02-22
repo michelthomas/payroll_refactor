@@ -83,7 +83,8 @@ public class Commissioned extends Employee {
 
         Double sumSalesResults = this.getSalesResultsByDate(begin, end).stream().mapToDouble(SaleResult::getValue).sum();
 
-        return this.baseSalary + (sumSalesResults * (this.percentage / 100));
+        return (this.baseSalary / this.getPaymentInfo().getSchedule().getPaydaysInTheMonth().size()) +
+                (sumSalesResults * (this.percentage / 100));
     }
 
     @Override
