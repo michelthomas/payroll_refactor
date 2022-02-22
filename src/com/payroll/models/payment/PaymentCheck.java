@@ -12,6 +12,7 @@ public class PaymentCheck {
     private final LocalDate date;
 
     public PaymentCheck(Double grossSalary, Double syndicateDiscounts, LocalDate date) {
+        this.id = UUID.randomUUID();
         this.grossSalary = grossSalary;
         this.syndicateDiscounts = syndicateDiscounts;
         this.date = date;
