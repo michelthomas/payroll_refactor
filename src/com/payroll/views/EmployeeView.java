@@ -1,8 +1,6 @@
 package com.payroll.views;
 
-import com.payroll.Main;
 import com.payroll.Menu;
-import com.payroll.controllers.EmployeesController;
 import com.payroll.controllers.SyndicatesController;
 import com.payroll.exceptions.EmployeeDoesNotBelongToTheSyndicateException;
 import com.payroll.models.employee.Employee;
@@ -11,12 +9,9 @@ import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
-public class EmployeeView {
+public class EmployeeView extends View {
 
-    public static Scanner scanner = new Scanner(System.in);
-    public static EmployeesController employeesController = new EmployeesController();
     public static SyndicatesController syndicatesController = new SyndicatesController();
 
     public static void listEmployees() throws ParseException {
@@ -80,13 +75,7 @@ public class EmployeeView {
 
         List<Employee> employeeList = employeesController.index();
 
-        System.out.println("Lista de Empregados:");
-
-        int i = 0;
-        for (Employee employee : employeeList) {
-            System.out.println("[" + i + "] - " + employee.getName() + " - " + employee.getId());
-            i++;
-        }
+        printEmployeeNumberedList(employeeList);
 
         System.out.println("\nSelecione o empregado que será removido: ");
         int n = scanner.nextInt();
@@ -163,13 +152,7 @@ public class EmployeeView {
 
         List<Employee> employeeList = employeesController.index();
 
-        System.out.println("Lista de Empregados:");
-
-        int i = 0;
-        for (Employee employee : employeeList) {
-            System.out.println("[" + i + "] - " + employee.getName() + " - " + employee.getId());
-            i++;
-        }
+        printEmployeeNumberedList(employeeList);
 
         System.out.println("\nSelecione o empregado para lançar uma taxa de serviço:");
         String n = scanner.nextLine();

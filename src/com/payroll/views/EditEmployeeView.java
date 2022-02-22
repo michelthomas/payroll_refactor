@@ -18,11 +18,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class EditEmployeeView {
+public class EditEmployeeView extends View {
 
-
-    public static Scanner scanner = new Scanner(System.in);
-    public static EmployeesController employeesController = new EmployeesController();
     public static PaymentsController paymentsController = new PaymentsController();
     public static SyndicatesController syndicatesController = new SyndicatesController();
 
@@ -77,13 +74,7 @@ public class EditEmployeeView {
     private static void editName() throws ParseException {
         List<Employee> employeeList = employeesController.index();
 
-        System.out.println("Lista de Empregados:");
-
-        int i = 0;
-        for (Employee employee : employeeList) {
-            System.out.println("[" + i + "] - " + employee.getName() + " - " + employee.getId());
-            i++;
-        }
+        printEmployeeNumberedList(employeeList);
 
         System.out.println("\nSelecione o empregado para editar seu nome: ");
         String n = scanner.nextLine();
@@ -103,13 +94,7 @@ public class EditEmployeeView {
     private static void editAddress() throws ParseException {
         List<Employee> employeeList = employeesController.index();
 
-        System.out.println("Lista de Empregados:");
-
-        int i = 0;
-        for (Employee employee : employeeList) {
-            System.out.println("[" + i + "] - " + employee.getName() + " - " + employee.getId());
-            i++;
-        }
+        printEmployeeNumberedList(employeeList);
 
         System.out.println("\nSelecione o empregado para editar seu endereço: ");
         String n = scanner.nextLine();
@@ -129,13 +114,7 @@ public class EditEmployeeView {
     private static void editType() {
         List<Employee> employeeList = employeesController.index();
 
-        System.out.println("Lista de Empregados:");
-
-        int i = 0;
-        for (Employee employee : employeeList) {
-            System.out.println("[" + i + "] - " + employee.getName() + " - " + employee.getId());
-            i++;
-        }
+        printEmployeeNumberedList(employeeList);
 
         System.out.println("\nSelecione o empregado para mudar seu tipo: ");
         String n = scanner.nextLine();
@@ -190,13 +169,7 @@ public class EditEmployeeView {
     private static void editPaymentMethod() throws ParseException {
         List<Employee> employeeList = employeesController.index();
 
-        System.out.println("Lista de Empregados:");
-
-        int i = 0;
-        for (Employee employee : employeeList) {
-            System.out.println("[" + i + "] - " + employee.getName() + " - " + employee.getId());
-            i++;
-        }
+        printEmployeeNumberedList(employeeList);
 
         System.out.println("\nSelecione o empregado para alterar a forma de pagamento: ");
         String n = scanner.nextLine();
@@ -232,13 +205,7 @@ public class EditEmployeeView {
     private static void joinSyndicate() throws ParseException {
         List<Employee> employeeList = employeesController.index();
 
-        System.out.println("Lista de Empregados:");
-
-        int i = 0;
-        for (Employee employee : employeeList) {
-            System.out.println("[" + i + "] - " + employee.getName() + " - " + employee.getId());
-            i++;
-        }
+        printEmployeeNumberedList(employeeList);
 
         System.out.println("\nSelecione o empregado para sindicalizar: ");
         String n = scanner.nextLine();
@@ -258,13 +225,7 @@ public class EditEmployeeView {
     private static void leaveSyndicate() throws ParseException {
         List<Employee> employeeList = employeesController.index();
 
-        System.out.println("Lista de Empregados:");
-
-        int i = 0;
-        for (Employee employee : employeeList) {
-            System.out.println("[" + i + "] - " + employee.getName() + " - " + employee.getId());
-            i++;
-        }
+        printEmployeeNumberedList(employeeList);
 
         System.out.println("\nSelecione o empregado para dessindicalizar: ");
         String n = scanner.nextLine();
@@ -285,13 +246,7 @@ public class EditEmployeeView {
     private static void editSyndicateMonthlyFee() throws ParseException {
         List<Employee> employeeList = employeesController.index();
 
-        System.out.println("Lista de Empregados:");
-
-        int i = 0;
-        for (Employee employee : employeeList) {
-            System.out.println("[" + i + "] - " + employee.getName() + " - " + employee.getId());
-            i++;
-        }
+        printEmployeeNumberedList(employeeList);
 
         System.out.println("\nSelecione o empregado para editar sua taxa sindical: ");
         String n = scanner.nextLine();
