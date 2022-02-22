@@ -31,39 +31,7 @@ public class PaymentService {
             return 0.0;
         }
 
-        // TODO Rename these
-        Month month = LocalDate.now().getMonth();
-        int year = LocalDate.now().getYear();
-        int lastPayday = 1;
-
-        LocalDate begin;
-
-        PaymentCheck lastPaymentCheck = employee.getLastPaymentCheck();
-
-        if (lastPaymentCheck != null) {
-            LocalDate lastPaymentCheckDate = lastPaymentCheck.getDate();
-
-            if (lastPaymentCheckDate != null) {
-
-                lastPayday = lastPaymentCheckDate.getDayOfMonth();
-
-                if (lastPaymentCheckDate.getMonth() != LocalDate.now().getMonth()) {
-                    month = lastPaymentCheckDate.getMonth();
-                }
-
-                if (lastPaymentCheckDate.getYear() != LocalDate.now().getYear()) {
-                    year = lastPaymentCheckDate.getYear();
-                }
-            }
-
-            begin = LocalDate.of(year, month, lastPayday);
-
-        } else {
-
-            // If there are no paychecks, decrease one day to count from the first of the month
-            begin = LocalDate.of(year, month, lastPayday).minusDays(1);
-        }
-
+        LocalDate begin = employee.getLastPaydayDateToCalculatePeriod();
         LocalDate end = LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth(), payday);
 
         Double additionalFeesValue = affiliate.calculateAdditionalFeeByDatePeriod(begin, end);

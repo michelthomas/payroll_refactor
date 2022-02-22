@@ -3,6 +3,7 @@ package com.payroll.models.employee;
 import com.payroll.models.payment.PaymentCheck;
 import com.payroll.models.payment.PaymentInfo;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
@@ -81,6 +82,15 @@ public abstract class Employee {
         return this.paymentChecks.stream()
                 .max(Comparator.comparing(PaymentCheck::getDate))
                 .orElse(null);
+    }
+
+    public LocalDate getLastPaydayDateToCalculatePeriod() {
+        if (this.paymentChecks == null) {
+            // If there are no paychecks, decrease one day to count from the first of the month
+            return  LocalDate.of(LocalDate.now().getYear(), LocalDate.now().getMonth(), 1).minusDays(1);
+        }
+
+        return this.getLastPaymentCheck().getDate();
     }
 
     @Override
