@@ -15,15 +15,27 @@ public class Hourly extends Employee {
     private List<TimeCard> timeCards;
 
     public Hourly(String documentNumber, String name, String address, Double hourlySalary) {
-        super(documentNumber, name, address);
-        this.hourlySalary = hourlySalary;
-        this.setPaymentInfo(new PaymentInfo(DB.getInstance().paymentSchedules.get("semanal-1-sexta"), null));
+        this(documentNumber, name, address, hourlySalary,
+                new PaymentInfo(DB.getInstance().paymentSchedules.get("semanal-1-sexta"),
+                        DB.getInstance().paymentMethods.get("deposito"))
+        );
     }
 
     public Hourly(UUID id, String documentNumber, String name, String address, Double hourlySalary) {
-        super(id, documentNumber, name, address);
+        this(id, documentNumber, name, address, hourlySalary,
+                new PaymentInfo(DB.getInstance().paymentSchedules.get("semanal-1-sexta"),
+                        DB.getInstance().paymentMethods.get("deposito"))
+        );
+    }
+
+    public Hourly(String documentNumber, String name, String address, Double hourlySalary, PaymentInfo paymentInfo) {
+        super(documentNumber, name, address, paymentInfo);
         this.hourlySalary = hourlySalary;
-        this.setPaymentInfo(new PaymentInfo(DB.getInstance().paymentSchedules.get("semanal-1-sexta"), null));
+    }
+
+    public Hourly(UUID id, String documentNumber, String name, String address, Double hourlySalary, PaymentInfo paymentInfo) {
+        super(id, documentNumber, name, address, paymentInfo);
+        this.hourlySalary = hourlySalary;
     }
 
     public Double getHourlySalary() {

@@ -16,18 +16,16 @@ public abstract class Employee {
     private PaymentInfo paymentInfo;
     private List<PaymentCheck> paymentChecks;
 
-    public Employee(String documentNumber, String name, String address) {
-        this.id = UUID.randomUUID();
-        this.documentNumber = documentNumber;
-        this.name = name;
-        this.address = address;
+    public Employee(String documentNumber, String name, String address, PaymentInfo paymentInfo) {
+        this(UUID.randomUUID(), documentNumber, name, address, paymentInfo);
     }
 
-    public Employee(UUID id, String documentNumber, String name, String address) {
+    public Employee(UUID id, String documentNumber, String name, String address, PaymentInfo paymentInfo) {
         this.id = id;
         this.documentNumber = documentNumber;
         this.name = name;
         this.address = address;
+        this.paymentInfo = paymentInfo;
     }
 
     public UUID getId() {

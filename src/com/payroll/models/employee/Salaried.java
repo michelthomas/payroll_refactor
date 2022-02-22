@@ -10,13 +10,26 @@ public class Salaried extends Employee {
     private Double monthlySalary;
 
     public Salaried(String documentNumber, String name, String address, Double monthlySalary) {
-        super(documentNumber, name, address);
-        this.monthlySalary = monthlySalary;
-        this.setPaymentInfo(new PaymentInfo(DB.getInstance().paymentSchedules.get("mensal-$"), null));
+        this(documentNumber, name, address, monthlySalary,
+                new PaymentInfo(DB.getInstance().paymentSchedules.get("mensal-$"),
+                        DB.getInstance().paymentMethods.get("deposito"))
+        );
     }
 
     public Salaried(UUID id, String documentNumber, String name, String address, Double monthlySalary) {
-        super(id, documentNumber, name, address);
+        this(id, documentNumber, name, address, monthlySalary,
+                new PaymentInfo(DB.getInstance().paymentSchedules.get("mensal-$"),
+                        DB.getInstance().paymentMethods.get("deposito"))
+        );
+    }
+
+    public Salaried(String documentNumber, String name, String address, Double monthlySalary, PaymentInfo paymentInfo) {
+        super(documentNumber, name, address, paymentInfo);
+        this.monthlySalary = monthlySalary;
+    }
+
+    public Salaried(UUID id, String documentNumber, String name, String address, Double monthlySalary, PaymentInfo paymentInfo) {
+        super(id, documentNumber, name, address, paymentInfo);
         this.monthlySalary = monthlySalary;
     }
 

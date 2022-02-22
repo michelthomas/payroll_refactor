@@ -16,17 +16,29 @@ public class Commissioned extends Employee {
     private List<SaleResult> salesResults;
 
     public Commissioned(String documentNumber, String name, String address, Double baseSalary, Double percentage) {
-        super(documentNumber, name, address);
-        this.baseSalary = baseSalary;
-        this.percentage = percentage;
-        this.setPaymentInfo(new PaymentInfo(DB.getInstance().paymentSchedules.get("semanal-2-sexta"), null));
+        this(documentNumber, name, address, baseSalary, percentage,
+                new PaymentInfo(DB.getInstance().paymentSchedules.get("semanal-2-sexta"),
+                        DB.getInstance().paymentMethods.get("deposito"))
+        );
     }
 
     public Commissioned(UUID id, String documentNumber, String name, String address, Double baseSalary, Double percentage) {
-        super(id, documentNumber, name, address);
+        this(id, documentNumber, name, address, baseSalary, percentage,
+                new PaymentInfo(DB.getInstance().paymentSchedules.get("semanal-2-sexta"),
+                        DB.getInstance().paymentMethods.get("deposito"))
+        );
+    }
+
+    public Commissioned(String documentNumber, String name, String address, Double baseSalary, Double percentage, PaymentInfo paymentInfo) {
+        super(documentNumber, name, address, paymentInfo);
         this.baseSalary = baseSalary;
         this.percentage = percentage;
-        this.setPaymentInfo(new PaymentInfo(DB.getInstance().paymentSchedules.get("semanal-2-sexta"), null));
+    }
+
+    public Commissioned(UUID id, String documentNumber, String name, String address, Double baseSalary, Double percentage, PaymentInfo paymentInfo) {
+        super(id, documentNumber, name, address, paymentInfo);
+        this.baseSalary = baseSalary;
+        this.percentage = percentage;
     }
 
     public Double getBaseSalary() {
