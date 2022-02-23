@@ -1,13 +1,5 @@
 package com.payroll;
 
-import com.payroll.models.employee.Employee;
-import com.payroll.models.payment.PaymentCheck;
-
-import java.text.ParseException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -17,11 +9,7 @@ public class Main {
         System.out.println(DB.getInstance());
         System.out.println("------------------");
 
-        try {
-            Menu.show();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        Menu.show();
 
         System.out.println(DB.getInstance());
         System.out.println("------------------");

@@ -68,7 +68,7 @@ public class EmployeesController {
         this.db.employees.remove(id);
     }
 
-    public void registerTimeCard(Employee employee, Map<String, String> data) throws ParseException {
+    public void registerTimeCard(Employee employee, Map<String, String> data) {
         TimeCard timeCard = new TimeCard(
                 LocalDate.parse(data.get("date"), DateUtils.formatter),
                 Integer.parseInt(data.get("dailyHours"))
@@ -83,7 +83,7 @@ public class EmployeesController {
         }
     }
 
-    public void registerSalesResult(Employee employee, Map<String, String> data) throws ParseException {
+    public void registerSalesResult(Employee employee, Map<String, String> data) {
         SaleResult saleResult = new SaleResult(
                 LocalDate.parse(data.get("date"), DateUtils.formatter),
                 Double.parseDouble(data.get("value"))

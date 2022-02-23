@@ -1,7 +1,6 @@
 package com.payroll.views;
 
 import com.payroll.Menu;
-import com.payroll.controllers.EmployeesController;
 import com.payroll.controllers.PaymentsController;
 import com.payroll.controllers.SyndicatesController;
 import com.payroll.exceptions.EmployeeDoesNotBelongToTheSyndicateException;
@@ -12,18 +11,16 @@ import com.payroll.models.employee.Salaried;
 import com.payroll.models.payment.method.PaymentMethod;
 import com.payroll.models.syndicate.Affiliate;
 
-import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 public class EditEmployeeView extends View {
 
     public static PaymentsController paymentsController = new PaymentsController();
     public static SyndicatesController syndicatesController = new SyndicatesController();
 
-    public static void menu() throws ParseException {
+    public static void menu() {
         System.out.println("0. Alterar nome");
         System.out.println("1. Alterar endereço");
         System.out.println("2. Alterar tipo");
@@ -48,7 +45,9 @@ public class EditEmployeeView extends View {
             case 6 -> EditEmployeeView.editEmployeeSyndicateId();
             case 7 -> EditEmployeeView.editSyndicateMonthlyFee();
             case 8 -> EditEmployeeView.listAffiliates();
-            case 9 -> Menu.show();
+            case 9 -> {
+                return;
+            }
             default -> {
                 System.out.println("Opção inválida!");
                 menu();
@@ -59,7 +58,7 @@ public class EditEmployeeView extends View {
         menu();
     }
 
-    private static void listAffiliates() throws ParseException {
+    private static void listAffiliates() {
         List<Affiliate> employeeList = syndicatesController.getAllAffiliates();
 
         System.out.println("Lista de Sindicalizados:");
@@ -71,7 +70,7 @@ public class EditEmployeeView extends View {
         menu();
     }
 
-    private static void editName() throws ParseException {
+    private static void editName() {
         List<Employee> employeeList = employeesController.index();
 
         printEmployeeNumberedList(employeeList);
@@ -91,7 +90,7 @@ public class EditEmployeeView extends View {
         menu();
     }
 
-    private static void editAddress() throws ParseException {
+    private static void editAddress() {
         List<Employee> employeeList = employeesController.index();
 
         printEmployeeNumberedList(employeeList);
@@ -166,7 +165,7 @@ public class EditEmployeeView extends View {
         employeesController.changeEmployeeType(employee, data);
     }
 
-    private static void editPaymentMethod() throws ParseException {
+    private static void editPaymentMethod() {
         List<Employee> employeeList = employeesController.index();
 
         printEmployeeNumberedList(employeeList);
@@ -202,7 +201,7 @@ public class EditEmployeeView extends View {
         menu();
     }
 
-    private static void joinSyndicate() throws ParseException {
+    private static void joinSyndicate() {
         List<Employee> employeeList = employeesController.index();
 
         printEmployeeNumberedList(employeeList);
@@ -222,7 +221,7 @@ public class EditEmployeeView extends View {
         menu();
     }
 
-    private static void leaveSyndicate() throws ParseException {
+    private static void leaveSyndicate() {
         List<Employee> employeeList = employeesController.index();
 
         printEmployeeNumberedList(employeeList);
@@ -243,7 +242,7 @@ public class EditEmployeeView extends View {
     private static void editEmployeeSyndicateId() {
     }
 
-    private static void editSyndicateMonthlyFee() throws ParseException {
+    private static void editSyndicateMonthlyFee() {
         List<Employee> employeeList = employeesController.index();
 
         printEmployeeNumberedList(employeeList);
@@ -271,10 +270,10 @@ public class EditEmployeeView extends View {
 
 
     // TODO Move to other view
-    public static void runPayroll() throws ParseException {
+    public static void runPayroll() {
         employeesController.index().forEach(employee -> {
             List<Integer> paydaysInTheMonth = employee.getPaymentInfo().getSchedule().getPaydaysInTheMonth();
-            System.out.println(employee.getName() + " - "  + employee.getPaymentInfo().getSchedule() + " --- " + paydaysInTheMonth);
+            System.out.println(employee.getName() + " - " + employee.getPaymentInfo().getSchedule() + " --- " + paydaysInTheMonth);
         });
 
         System.out.println("\nDigite o dia: ");

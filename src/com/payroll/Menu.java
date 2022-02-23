@@ -1,9 +1,7 @@
 package com.payroll;
 
-import com.payroll.views.EditEmployeeView;
-import com.payroll.views.EmployeeView;
+import com.payroll.views.commands.Invoker;
 
-import java.text.ParseException;
 import java.util.Scanner;
 
 public class Menu {
@@ -11,7 +9,7 @@ public class Menu {
 
     public static Scanner scanner = new Scanner(System.in);
 
-    public static void show() throws ParseException {
+    public static void show() {
         System.out.println("0. Listar todos os empregados");
         System.out.println("1. Adição de um empregado");
         System.out.println("2. Remoção de um empregado");
@@ -20,40 +18,12 @@ public class Menu {
         System.out.println("5. Lançar uma taxa de serviço");
         System.out.println("6. Alterar detalhes de um empregado");
         System.out.println("7. Rodar a folha de pagamento");
-        System.out.println("99. Sair");
+        System.out.println("8. Sair");
 
-        int choice = Integer.parseInt(scanner.nextLine());
+        Invoker invoker = new Invoker();
 
-        switch (choice) {
-            case 0:
-                EmployeeView.listEmployees();
-                break;
-            case 1:
-                EmployeeView.registerEmployee();
-                break;
-            case 2:
-                EmployeeView.deleteEmployee();
-                break;
-            case 3:
-                EmployeeView.registerTimeCard();
-                break;
-            case 4:
-                EmployeeView.registerSalesResult();
-                break;
-            case 5:
-                EmployeeView.registerAdditionalServiceFee();
-                break;
-            case 6:
-                EditEmployeeView.menu();
-                break;
-            case 7:
-                EditEmployeeView.runPayroll();
-                break;
-            case 99:
-                break;
-            default:
-                System.out.println("Opção inválida!");
-                show();
+        if (invoker.executeCommand(Integer.parseInt(scanner.nextLine()))) {
+            show();
         }
     }
 

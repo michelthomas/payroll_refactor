@@ -1,6 +1,5 @@
 package com.payroll.views;
 
-import com.payroll.Menu;
 import com.payroll.controllers.SyndicatesController;
 import com.payroll.exceptions.EmployeeDoesNotBelongToTheSyndicateException;
 import com.payroll.models.employee.Employee;
@@ -14,7 +13,7 @@ public class EmployeeView extends View {
 
     public static SyndicatesController syndicatesController = new SyndicatesController();
 
-    public static void listEmployees() throws ParseException {
+    public static void listEmployees() {
 
         List<Employee> employeeList = employeesController.index();
 
@@ -25,11 +24,9 @@ public class EmployeeView extends View {
         }
 
         System.out.println("---------------------------");
-
-        Menu.show();
     }
 
-    public static void registerEmployee() throws ParseException {
+    public static void registerEmployee(){
 
         Map<String, String> data = new HashMap<>();
 
@@ -67,11 +64,9 @@ public class EmployeeView extends View {
         employeesController.store(data);
 
         System.out.println("---------------------------");
-
-        Menu.show();
     }
 
-    public static void deleteEmployee() throws ParseException {
+    public static void deleteEmployee() {
 
         List<Employee> employeeList = employeesController.index();
 
@@ -83,11 +78,9 @@ public class EmployeeView extends View {
         employeesController.delete(employeeList.get(n).getId());
 
         System.out.println("---------------------------");
-
-        Menu.show();
     }
 
-    public static void registerTimeCard() throws ParseException {
+    public static void registerTimeCard() {
 
         Map<String, String> data = new HashMap<>();
 
@@ -113,11 +106,9 @@ public class EmployeeView extends View {
         employeesController.registerTimeCard(employeeList.get(Integer.parseInt(n)), data);
 
         System.out.println("---------------------------");
-
-        Menu.show();
     }
 
-    public static void registerSalesResult() throws ParseException {
+    public static void registerSalesResult() {
 
         Map<String, String> data = new HashMap<>();
 
@@ -143,11 +134,9 @@ public class EmployeeView extends View {
         employeesController.registerSalesResult(employeeList.get(Integer.parseInt(n)), data);
 
         System.out.println("---------------------------");
-
-        Menu.show();
     }
 
-    public static void registerAdditionalServiceFee() throws ParseException {
+    public static void registerAdditionalServiceFee() {
         Map<String, String> data = new HashMap<>();
 
         List<Employee> employeeList = employeesController.index();
@@ -173,7 +162,5 @@ public class EmployeeView extends View {
         }
 
         System.out.println("---------------------------");
-
-        Menu.show();
     }
 }
