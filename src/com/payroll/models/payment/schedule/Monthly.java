@@ -4,36 +4,17 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Monthly implements PaymentSchedule {
-
-    private int day;
-
-    public Monthly(int day) {
-        this.day = day;
-    }
-
-    public int getDay() {
-        return day;
-    }
-
-    public void setDay(int day) {
-        this.day = day;
-    }
+public class Monthly implements PaymentScheduleStrategy {
 
     @Override
-    public List<Integer> getPaydaysInTheMonth() {
+    public List<Integer> getPaydaysInTheMonth(PaymentSchedule paymentSchedule, LocalDate date) {
         ArrayList<Integer> paydays = new ArrayList<>();
-        paydays.add(day);
+        paydays.add(paymentSchedule.getExactDay());
         return paydays;
     }
 
     @Override
-    public List<Integer> getPaydaysInTheMonthByDate(LocalDate date) {
-        return this.getPaydaysInTheMonth();
-    }
-
-    @Override
-    public String toString() {
-        return "Mensalmente, no dia " + day;
+    public String toString(PaymentSchedule paymentSchedule) {
+        return "Mensalmente, no dia " + paymentSchedule.getExactDay();
     }
 }

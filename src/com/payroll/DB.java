@@ -1,7 +1,6 @@
 package com.payroll;
 
 import com.payroll.models.employee.*;
-import com.payroll.models.payment.PaymentInfo;
 import com.payroll.models.payment.method.BankCheckHand;
 import com.payroll.models.payment.method.BankCheckMail;
 import com.payroll.models.payment.method.Deposit;
@@ -44,9 +43,9 @@ public class DB {
     }
 
     public void seed() {
-        this.paymentSchedules.put("mensal-$", new LastWorkingDayOfTheMonth());
-        this.paymentSchedules.put("semanal-2-sexta", new Weekly(2, DayOfWeek.FRIDAY));
-        this.paymentSchedules.put("semanal-1-sexta", new Weekly(4, DayOfWeek.FRIDAY));
+        this.paymentSchedules.put("mensal-$", new PaymentSchedule(1, null, new LastWorkingDayOfTheMonth()));
+        this.paymentSchedules.put("semanal-2-sexta", new PaymentSchedule(2, DayOfWeek.FRIDAY, new Weekly()));
+        this.paymentSchedules.put("semanal-1-sexta", new PaymentSchedule(4, DayOfWeek.FRIDAY, new Weekly()));
 
         this.paymentMethods.put("deposito", new Deposit());
         this.paymentMethods.put("cheque-correios", new BankCheckMail());
@@ -58,15 +57,21 @@ public class DB {
                 new Hourly("789", "Cícero", "Avenida avenue", 20.0)
         };
 
-        employees[0].getPaymentInfo().setMethod(this.paymentMethods.get("deposito"));
+        /*employees[0].getPaymentInfo().setMethod(this.paymentMethods.get("deposito"));
         employees[1].getPaymentInfo().setMethod(this.paymentMethods.get("cheque-correios"));
-        employees[2].getPaymentInfo().setMethod(this.paymentMethods.get("cheque-maos"));
+        employees[2].getPaymentInfo().setMethod(this.paymentMethods.get("cheque-maos"));*/
 
+
+        List<SaleResult> saleResultList = new ArrayList<>();
+        saleResultList.add(new SaleResult(LocalDate.of(2022, Month.FEBRUARY, 2), 100.0));
+        saleResultList.add(new SaleResult(LocalDate.of(2022, Month.FEBRUARY, 2), 200.0));
+        saleResultList.add(new SaleResult(LocalDate.of(2022, Month.FEBRUARY, 2), 300.0));
+        ((Commissioned) employees[1]).setSalesResults(saleResultList);
 
         List<TimeCard> timeCardList = new ArrayList<>();
-        timeCardList.add(new TimeCard(LocalDate.of(2021, Month.NOVEMBER, 5), 8));
-        timeCardList.add(new TimeCard(LocalDate.of(2021, Month.NOVEMBER, 6), 9));
-        timeCardList.add(new TimeCard(LocalDate.of(2021, Month.DECEMBER, 8), 10));
+        timeCardList.add(new TimeCard(LocalDate.of(2022, Month.FEBRUARY, 1), 9));
+        timeCardList.add(new TimeCard(LocalDate.of(2022, Month.FEBRUARY, 22), 10));
+        timeCardList.add(new TimeCard(LocalDate.of(2022, Month.FEBRUARY, 28), 11));
 
         ((Hourly) employees[2]).setTimeCards(timeCardList);
 

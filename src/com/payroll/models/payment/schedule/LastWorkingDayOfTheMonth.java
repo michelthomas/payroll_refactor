@@ -4,18 +4,12 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
-public class LastWorkingDayOfTheMonth implements PaymentSchedule {
+public class LastWorkingDayOfTheMonth implements PaymentScheduleStrategy {
 
     @Override
-    public List<Integer> getPaydaysInTheMonth() {
-        return getPaydaysInTheMonthByDate(LocalDate.now());
-    }
-
-    @Override
-    public List<Integer> getPaydaysInTheMonthByDate(LocalDate date) {
+    public List<Integer> getPaydaysInTheMonth(PaymentSchedule paymentSchedule, LocalDate date) {
 
         int lastDayOfMonth;
 
@@ -39,7 +33,7 @@ public class LastWorkingDayOfTheMonth implements PaymentSchedule {
     }
 
     @Override
-    public String toString() {
-        return "Último dia útil do mês";
+    public String toString(PaymentSchedule paymentSchedule) {
+        return "Último dia útil do mês, dia " + this.getPaydaysInTheMonth(paymentSchedule, LocalDate.now()).get(0);
     }
 }
