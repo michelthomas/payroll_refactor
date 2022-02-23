@@ -26,3 +26,8 @@ informações por período
 ### Extract Superclass
 * Foi criada a superclasse `View` para que os problemas de duplicação das classes `EmployeeView` e `EditEmployeeView`
 fossem corrigidos
+
+### Strategy
+* Para delegar o cálculo dos dias de pagamento de um empregado no mês para classes específicas foi usado o padrão 
+Strategy
+
