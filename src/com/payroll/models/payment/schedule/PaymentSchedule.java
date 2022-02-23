@@ -59,4 +59,8 @@ public class PaymentSchedule {
         return this.paymentScheduleStrategy.getPaydaysInTheMonth(this, LocalDate.now());
     }
 
+    @Override
+    public String toString() {
+        return this.getPaymentScheduleStrategy().toString(this);
+    }
 }
