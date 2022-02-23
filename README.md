@@ -1,4 +1,5 @@
 # payroll_refactor
+[Link do primeiro projeto](https://github.com/michelthomas/payroll/)
 
 ## Code Smells
 
@@ -9,6 +10,11 @@ contracheque
 * Em `EmployeeView` e `EditEmployeeView` o mesmo trecho de código para exibir a lista de empregados é repetido em 
 diversas partes
 * `EmployeeView` e `EditEmployeeView`  usam o mesmo objeto de input(`Scanner`) e os controllers
+
+### Speculative Generality
+* Métodos de várias classes não são utilizados atualmente
+* Lançamento de ParseException onde não é necessário
+
 
 ## Refactoring
 
@@ -27,7 +33,13 @@ informações por período
 * Foi criada a superclasse `View` para que os problemas de duplicação das classes `EmployeeView` e `EditEmployeeView`
 fossem corrigidos
 
+### Removal of Speculative Generality
+- Remoção do lançamento inútil de ParseException
+
 ### Strategy
 * Para delegar o cálculo dos dias de pagamento de um empregado no mês para classes específicas foi usado o padrão 
 Strategy
+
+### Command
+* Para organizar melhor o fluxo do menu foi usado o padrão Command
 
