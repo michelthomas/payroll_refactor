@@ -73,7 +73,7 @@ public class EmployeeView extends View {
         printEmployeeNumberedList(employeeList);
 
         System.out.println("\nSelecione o empregado que será removido: ");
-        int n = scanner.nextInt();
+        int n = Integer.parseInt(scanner.nextLine());
 
         employeesController.delete(employeeList.get(n).getId());
 
