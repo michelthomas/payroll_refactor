@@ -63,15 +63,15 @@ public class DB {
 
 
         List<SaleResult> saleResultList = new ArrayList<>();
-        saleResultList.add(new SaleResult(LocalDate.of(2022, Month.FEBRUARY, 2), 100.0));
-        saleResultList.add(new SaleResult(LocalDate.of(2022, Month.FEBRUARY, 2), 200.0));
-        saleResultList.add(new SaleResult(LocalDate.of(2022, Month.FEBRUARY, 2), 300.0));
+        saleResultList.add(new SaleResult(LocalDate.of(2022, Month.MARCH, 2), 100.0));
+        saleResultList.add(new SaleResult(LocalDate.of(2022, Month.MARCH, 2), 200.0));
+        saleResultList.add(new SaleResult(LocalDate.of(2022, Month.MARCH, 15), 300.0));
         ((Commissioned) employees[1]).setSalesResults(saleResultList);
 
         List<TimeCard> timeCardList = new ArrayList<>();
-        timeCardList.add(new TimeCard(LocalDate.of(2022, Month.FEBRUARY, 1), 9));
-        timeCardList.add(new TimeCard(LocalDate.of(2022, Month.FEBRUARY, 22), 10));
-        timeCardList.add(new TimeCard(LocalDate.of(2022, Month.FEBRUARY, 28), 11));
+        timeCardList.add(new TimeCard(LocalDate.of(2022, Month.MARCH, 1), 9));
+        timeCardList.add(new TimeCard(LocalDate.of(2022, Month.MARCH, 22), 10));
+        timeCardList.add(new TimeCard(LocalDate.of(2022, Month.MARCH, 28), 11));
 
         ((Hourly) employees[2]).setTimeCards(timeCardList);
 
