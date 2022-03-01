@@ -50,3 +50,6 @@ Strategy. [Commit](https://github.com/michelthomas/payroll_refactor/commit/3737d
 * Para organizar melhor o fluxo do menu foi usado o padrão Command. 
 [Commit](https://github.com/michelthomas/payroll_refactor/commit/a4580b7c6a13f881e00f2243daaac7f9f83ad79f)
 
+### Singleton
+* Para simular um banco de dados, foi usado o padrão Singleton para garantir apenas uma instância da classe `DB`. [Link 
+da classe](https://github.com/michelthomas/payroll_refactor/blob/master/src/com/payroll/DB.java)
